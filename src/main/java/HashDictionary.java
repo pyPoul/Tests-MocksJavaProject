@@ -18,7 +18,8 @@ public class HashDictionary {
     }
 
     public String getHash(String word) {
-        return "";
+
+        return this.hashmap.get(word);
     }
 
     public void addHashEquivalence(String word, String sha3_512) {
