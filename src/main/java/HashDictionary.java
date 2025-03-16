@@ -23,6 +23,10 @@ public class HashDictionary {
 
     public void addHashEquivalence(String word, String sha3_512) {
 
+        if (word == null || sha3_512 == null) {
+            throw new IllegalArgumentException("null value passed in argument.");
+        }
+
         if (this.hashmap.containsKey(word)) {
             throw new IllegalArgumentException(String.format("The element %s already exists in the dictionary.", word));
         }
