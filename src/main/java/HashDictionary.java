@@ -19,6 +19,10 @@ public class HashDictionary {
 
     public String getHash(String word) {
 
+        if (!this.hashmap.containsKey(word)) {
+            throw new NullPointerException(String.format("Element (%s) doesn't exist in the dictionary.", word));
+        }
+
         return this.hashmap.get(word);
     }
 

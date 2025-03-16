@@ -96,13 +96,13 @@ public class HashDictionaryTest {
             d.getHash(randomStr);
             fail();
         } catch (NullPointerException e) {
-            assertEquals(String.format("element (%s) doesn't exist in the dictionary.", randomStr), e.getMessage());
+            assertEquals(String.format("Element (%s) doesn't exist in the dictionary.", randomStr), e.getMessage());
         }
         try {
             d.getHash(null);
             fail();
         } catch (NullPointerException e) {
-            assertEquals(String.format("element (%s) doesn't exist in the dictionary.", null), e.getMessage());
+            assertEquals(String.format("Element (%s) doesn't exist in the dictionary.", null), e.getMessage());
         }
     }
 
