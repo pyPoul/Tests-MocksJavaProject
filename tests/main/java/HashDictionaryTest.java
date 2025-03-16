@@ -55,6 +55,7 @@ public class HashDictionaryTest {
         // element already exists
         try {
             d.addHashEquivalence(hash1[0], hash1[1]);
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(String.format("The element %s already exists in the dictionary.", hash1[0]), e.getMessage());
         }
@@ -62,16 +63,19 @@ public class HashDictionaryTest {
         // null passed as an argument
         try {
             d.addHashEquivalence("stringTest1", null);
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals("null value passed in argument.", e.getMessage());
         }
         try {
             d.addHashEquivalence(null, "stringTest2");
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals("null value passed in argument.", e.getMessage());
         }
         try {
             d.addHashEquivalence(null, null);
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals("null value passed in argument.", e.getMessage());
         }
