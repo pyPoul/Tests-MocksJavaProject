@@ -15,15 +15,19 @@ public class HashDictionaryTest {
     void setUp() {
 
         d = new HashDictionary(dName);
+
     }
 
     @Test
     void constructorTest() {
         assertNotNull(d);
+        assertEquals(dName, d.name);
+        assertEquals(0, d.hashmap.size());
     }
 
     @Test
     void getDicNameTest() {
         assertEquals(dName, d.getDicName());
     }
+
 }
