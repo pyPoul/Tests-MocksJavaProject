@@ -11,6 +11,11 @@ public class HashDictionaryTest {
     String dName = "dictionary name";
     HashDictionary d;
 
+    String[] hash1 = new String[]{
+            "bonjour",
+            "fba980ee3cbd5d2c9d308dd8047577232f5e9508f7b3767730a3429634bb5950026829c7c038b5fb070ea90dae22c88416aae14c98fb7bc261def5984a9a7bdd"
+    };
+
     @BeforeEach
     void setUp() {
 
@@ -20,14 +25,56 @@ public class HashDictionaryTest {
 
     @Test
     void constructorTest() {
+
+        // instance exists
         assertNotNull(d);
+        // dic has a name
         assertEquals(dName, d.name);
+        // dic hashmap extists
+        assertNotNull(d.hashmap);
+        // dic is empty
         assertEquals(0, d.hashmap.size());
     }
 
     @Test
     void getDicNameTest() {
         assertEquals(dName, d.getDicName());
+    }
+
+    @Test
+    void addHashEquivalenceTest() {
+
+        // dic is empty
+        assertEquals(0, d.hashmap.size());
+
+        d.addHashEquivalence(hash1[0], hash1[1]);
+
+        // dic has 1 element
+        assertEquals(1, d.hashmap.size());
+
+        // element already exists
+        try {
+            d.addHashEquivalence(hash1[0], hash1[1]);
+        } catch (IllegalArgumentException e) {
+            assertEquals(String.format("The element %s already exists in the dictionary.", hash1[0]), e.getMessage());
+        }
+
+        // null passed as an argument
+        try {
+            d.addHashEquivalence("stringTest1", null);
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
+        try {
+            d.addHashEquivalence(null, "stringTest2");
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
+        try {
+            d.addHashEquivalence(null, null);
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
     }
 
 }

@@ -16,4 +16,14 @@ public class HashDictionary {
     public String getDicName() {
         return this.name;
     }
+
+    public String getHash(String word) {
+        return "";
+    }
+
+    public void addHashEquivalence(String word, String sha3_512) {
+
+    }
+
+
 }
