@@ -49,7 +49,7 @@ public class HashDictionaryTest {
 
         d.addHashEquivalence(hash1[0], hash1[1]);
 
-        // dic has 1 element
+        // dic has 1 element (element successfully added)
         assertEquals(1, d.hashmap.size());
 
         // element already exists
@@ -57,7 +57,7 @@ public class HashDictionaryTest {
             d.addHashEquivalence(hash1[0], hash1[1]);
             fail();
         } catch (IllegalArgumentException e) {
-            assertEquals(String.format("The element %s already exists in the dictionary.", hash1[0]), e.getMessage());
+            assertEquals(String.format("The element (%s) already exists in the dictionary.", hash1[0]), e.getMessage());
         }
 
         // null passed as an argument
@@ -78,6 +78,31 @@ public class HashDictionaryTest {
             fail();
         } catch (IllegalArgumentException e) {
             assertEquals("null value passed in argument.", e.getMessage());
+        }
+    }
+
+    @Test
+    void getHashTest() {
+
+        d.addHashEquivalence(hash1[0], hash1[1]);
+
+        String randomStr = "kjrhgnvq";
+
+        // get element
+        assertEquals(hash1[1], d.getHash(hash1[0]));
+
+        // element doesn't exist
+        try {
+            d.getHash(randomStr);
+            fail();
+        } catch (NullPointerException e) {
+            assertEquals(String.format("element (%s) doesn't exist in the dictionary.", randomStr), e.getMessage());
+        }
+        try {
+            d.getHash(null);
+            fail();
+        } catch (NullPointerException e) {
+            assertEquals(String.format("element (%s) doesn't exist in the dictionary.", null), e.getMessage());
         }
     }
 
