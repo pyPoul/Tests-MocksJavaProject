@@ -23,6 +23,8 @@ public class HashDictionary {
 
     public void addHashEquivalence(String word, String sha3_512) {
 
+        this.hashmap.put(word, sha3_512);
+
     }
 
 
