@@ -23,6 +23,10 @@ public class HashDictionary {
             throw new NullPointerException(String.format("Element (%s) doesn't exist in the dictionary.", word));
         }
 
+        if (!this.hashmap.get(word).containsKey(algorithm)) {
+            throw new NullPointerException(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s)", word, algorithm));
+        }
+
         return this.hashmap.get(word).get(algorithm);
     }
 
