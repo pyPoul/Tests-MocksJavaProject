@@ -165,4 +165,43 @@ public class HashDictionaryTest {
         }
     }
 
+    @Test
+    void getAllHashesTest() {
+
+        String testStr = "test";
+        String testSha1 = "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3";
+
+        d.addHashEquivalence(WORD, SHA3_512, SHA3_512_VALUE);
+
+        // try to get non-existing element
+        assertNull(d.getAllHashes("skejfbcnn"));
+
+        HashMap<String, String> hm1 = new HashMap<>();
+        hm1.put(SHA3_512, SHA3_512_VALUE);
+
+        // get elements with 1 algorithm
+        assertEquals(hm1, d.getAllHashes(WORD));
+
+        // get alements with 2 algorithm
+        d.addHashEquivalence(WORD, SHA1, SHA1_VALUE);
+        hm1.put(SHA1, SHA1_VALUE);
+        assertEquals(hm1, d.getAllHashes(WORD));
+
+        d.addHashEquivalence(testStr, SHA1, testSha1);
+        HashMap<String, String> hm2 = new HashMap<>();
+        hm2.put(SHA1, testSha1);
+
+        // get another element
+        assertEquals(hm2, d.getAllHashes(testStr));
+
+        // null passed as an argument
+        try {
+            d.getAllHashes(null);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
+
+    }
+
 }

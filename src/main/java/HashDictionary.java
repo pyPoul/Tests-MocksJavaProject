@@ -34,6 +34,10 @@ public class HashDictionary {
         return this.hashmap.get(word).get(algorithm);
     }
 
+    public HashMap<String, String> getAllHashes(String word) {
+        return null;
+    }
+
     public void addHashEquivalence(String word, String algorithm, String hashValue) {
 
         if (word == null || algorithm == null || hashValue == null) {
