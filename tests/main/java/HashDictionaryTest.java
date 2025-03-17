@@ -141,14 +141,14 @@ public class HashDictionaryTest {
             d.getHash(WORD, SHA1);
             fail();
         } catch (NullPointerException e) {
-            assertEquals(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s)", WORD, SHA1), e.getMessage());
+            assertEquals(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s).", WORD, SHA1), e.getMessage());
         }
 
         // null passed as an argument
         try {
             d.getHash("stringTest1", null);
             fail();
-        } catch (NullPointerException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals("null value passed in argument.", e.getMessage());
         }
         try {

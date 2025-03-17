@@ -19,12 +19,16 @@ public class HashDictionary {
 
     public String getHash(String word, String algorithm) {
 
+        if (word == null || algorithm == null) {
+            throw new IllegalArgumentException("null value passed in argument.");
+        }
+
         if (!this.hashmap.containsKey(word)) {
             throw new NullPointerException(String.format("Element (%s) doesn't exist in the dictionary.", word));
         }
 
         if (!this.hashmap.get(word).containsKey(algorithm)) {
-            throw new NullPointerException(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s)", word, algorithm));
+            throw new NullPointerException(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s).", word, algorithm));
         }
 
         return this.hashmap.get(word).get(algorithm);
