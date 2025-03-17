@@ -32,11 +32,15 @@ public class HashDictionary {
             throw new IllegalArgumentException("null value passed in argument.");
         }
 
-        if (this.hashmap.containsKey(word)) {
-            throw new IllegalArgumentException(String.format("The element (%s) already exists in the dictionary.", word));
+        HashMap<String, String> hm = this.hashmap.get(word);
+        if (hm == null) {
+            hm = new HashMap<>();
         }
 
-        HashMap<String, String> hm = new HashMap<>();
+        if (hm.containsKey(algorithm)) {
+            throw new IllegalArgumentException(String.format("The hash value of the word (%s) for the algorithm (%s) already exists in the dictionary.", word, algorithm));
+        }
+
         hm.put(algorithm, hashValue);
 
         this.hashmap.put(word, hm);
