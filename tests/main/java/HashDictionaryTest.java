@@ -201,7 +201,26 @@ public class HashDictionaryTest {
         } catch (IllegalArgumentException e) {
             assertEquals("null value passed in argument.", e.getMessage());
         }
+    }
 
+    @Test
+    void getWordTest() {
+
+        d.addHashEquivalence(WORD, SHA3_512, SHA3_512_VALUE);
+
+        // try to get non-existing element
+        assertNull(d.getWord("randomhashvaluenotinthedictionary"));
+
+        // get element
+        assertEquals(WORD, d.getWord(SHA3_512_VALUE));
+
+        // null passed as an argument
+        try {
+            d.getWord(null);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
     }
 
 }

@@ -22,10 +22,13 @@ public class HashDictionary {
     }
 
     /**
-     * Takes a value (word) and returns its equivalent hash given by the algorithm.
-     * @param word The value to get equivalent hash.
+     * Takes a value (word) and returns its equivalence hash given by the algorithm.
+     * @param word The value to get equivalence hash.
      * @param algorithm Used algorithm to get the hash value.
      * @return The hash value of the word.
+     * @throws IllegalArgumentException When a null value is passed as an argument.
+     * @throws NullPointerException When the word doesn't exist in the dictionary.
+     * @throws NullPointerException When the word doesn't have a hash equivalence with the algorithm.
      */
     public String getHash(String word, String algorithm) {
 
@@ -51,7 +54,8 @@ public class HashDictionary {
     /**
      * Takes a value (word) and returns a hashmap of its equivalent hashes given by associated algorithm.
      * @param word The value to get equivalent hashes.
-     * @return The hashmap of hashes associated to their algorithm of the word.
+     * @return The hashmap of hashes associated to their algorithm of the word or null if there isn't.
+     * @throws IllegalArgumentException When a null value is passed as an argument.
      */
     public HashMap<String, String> getAllHashes(String word) {
 
@@ -65,10 +69,22 @@ public class HashDictionary {
     }
 
     /**
+     * Takes a hash value and returns its clear equivalence
+     * @param hashValue The value to get clear equivalence
+     * @return The clear equivalence or null if there isn't.
+     * @throws IllegalArgumentException When a null value is passed as an argument.
+     */
+    public String getWord(String hashValue) {
+        return "";
+    }
+
+    /**
      * Add a word to the dictionary with an algorithm and its equivalent hash.
      * @param word The value to add.
      * @param algorithm The algorithm to add.
      * @param hashValue The hash equivalent of the word using the algorithm.
+     * @throws IllegalArgumentException When a null value is passed as an argument.
+     * @throws IllegalArgumentException When the algorithm is already in the word's dictionary.
      */
     public void addHashEquivalence(String word, String algorithm, String hashValue) {
 
@@ -94,6 +110,5 @@ public class HashDictionary {
         // associates the word with its hash equivalent
         this.hashmap.put(word, hm);
     }
-
 
 }
