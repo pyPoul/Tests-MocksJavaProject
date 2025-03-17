@@ -28,7 +28,7 @@ public class HashDictionary {
 
     public void addHashEquivalence(String word, String algorithm, String hashValue) {
 
-        if (word == null || hashValue == null) {
+        if (word == null || algorithm == null || hashValue == null) {
             throw new IllegalArgumentException("null value passed in argument.");
         }
 
