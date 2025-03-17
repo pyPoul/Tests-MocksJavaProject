@@ -13,55 +13,86 @@ public class HashDictionary {
         this.hashmap = new HashMap<>();
     }
 
+    /**
+     * @return the name of the dictionary.
+     */
     public String getDicName() {
+
         return this.name;
     }
 
+    /**
+     * Takes a value (word) and returns its equivalent hash given by the algorithm.
+     * @param word The value to get equivalent hash.
+     * @param algorithm Used algorithm to get the hash value.
+     * @return The hash value of the word.
+     */
     public String getHash(String word, String algorithm) {
 
+        // ignore null values
         if (word == null || algorithm == null) {
             throw new IllegalArgumentException("null value passed in argument.");
         }
 
+        // word isn't in the dictionary
         if (!this.hashmap.containsKey(word)) {
             throw new NullPointerException(String.format("Element (%s) doesn't exist in the dictionary.", word));
         }
 
+        // the algorithm isn't in the word's dictionary
         if (!this.hashmap.get(word).containsKey(algorithm)) {
             throw new NullPointerException(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s).", word, algorithm));
         }
 
+        // returns the hash value
         return this.hashmap.get(word).get(algorithm);
     }
 
+    /**
+     * Takes a value (word) and returns a hashmap of its equivalent hashes given by associated algorithm.
+     * @param word The value to get equivalent hashes.
+     * @return The hashmap of hashes associated to their algorithm of the word.
+     */
     public HashMap<String, String> getAllHashes(String word) {
 
+        // ignore null value
         if (word == null) {
             throw new IllegalArgumentException("null value passed in argument.");
         }
 
+        // returns the hashmap
         return this.hashmap.get(word);
     }
 
+    /**
+     * Add a word to the dictionary with an algorithm and its equivalent hash.
+     * @param word The value to add.
+     * @param algorithm The algorithm to add.
+     * @param hashValue The hash equivalent of the word using the algorithm.
+     */
     public void addHashEquivalence(String word, String algorithm, String hashValue) {
 
+        // ignore null values
         if (word == null || algorithm == null || hashValue == null) {
             throw new IllegalArgumentException("null value passed in argument.");
         }
 
+        // add word to the dictionary if isn't in
         HashMap<String, String> hm = this.hashmap.get(word);
         if (hm == null) {
             hm = new HashMap<>();
         }
 
+        // check if the algorithm already exists for this word
         if (hm.containsKey(algorithm)) {
             throw new IllegalArgumentException(String.format("The hash value of the word (%s) for the algorithm (%s) already exists in the dictionary.", word, algorithm));
         }
 
+        // associates the algorithm with the hash value
         hm.put(algorithm, hashValue);
 
+        // associates the word with its hash equivalent
         this.hashmap.put(word, hm);
-
     }
 
 
