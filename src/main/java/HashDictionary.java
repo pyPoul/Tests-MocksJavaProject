@@ -6,7 +6,7 @@ public class HashDictionary {
 
     // public attributes for testing
     public String name;
-    public HashMap<String, String> hashmap;
+    public HashMap<String, HashMap<String, String>> hashmap;
 
     public HashDictionary(String n) {
         this.name = n;
@@ -17,18 +17,18 @@ public class HashDictionary {
         return this.name;
     }
 
-    public String getHash(String word) {
+    public String getHash(String word, String algorithm) {
 
         if (!this.hashmap.containsKey(word)) {
             throw new NullPointerException(String.format("Element (%s) doesn't exist in the dictionary.", word));
         }
 
-        return this.hashmap.get(word);
+        return this.hashmap.get(word).get(algorithm);
     }
 
-    public void addHashEquivalence(String word, String sha3_512) {
+    public void addHashEquivalence(String word, String algorithm, String hashValue) {
 
-        if (word == null || sha3_512 == null) {
+        if (word == null || hashValue == null) {
             throw new IllegalArgumentException("null value passed in argument.");
         }
 
@@ -36,7 +36,7 @@ public class HashDictionary {
             throw new IllegalArgumentException(String.format("The element (%s) already exists in the dictionary.", word));
         }
 
-        this.hashmap.put(word, sha3_512);
+        //this.hashmap.put(word, hashValue);
 
     }
 
