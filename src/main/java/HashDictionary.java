@@ -75,7 +75,13 @@ public class HashDictionary {
      * @throws IllegalArgumentException When a null value is passed as an argument.
      */
     public String getWord(String hashValue) {
-        return "";
+
+        for (String word: this.hashmap.keySet()) {
+            if (this.hashmap.get(word).containsValue(hashValue)) {
+                return word;
+            }
+        }
+        return null;
     }
 
     /**
