@@ -36,7 +36,10 @@ public class HashDictionary {
             throw new IllegalArgumentException(String.format("The element (%s) already exists in the dictionary.", word));
         }
 
-        //this.hashmap.put(word, hashValue);
+        HashMap<String, String> hm = new HashMap<>();
+        hm.put(algorithm, hashValue);
+
+        this.hashmap.put(word, hm);
 
     }
 
