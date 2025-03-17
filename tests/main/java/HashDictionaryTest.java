@@ -117,31 +117,52 @@ public class HashDictionaryTest {
             assertEquals("null value passed in argument.", e.getMessage());
         }
     }
-    /*
+
     @Test
     void getHashTest() {
 
-        d.addHashEquivalence(hash1[0], hash1[1]);
+        d.addHashEquivalence(WORD, SHA3_512, SHA3_512_VALUE);
 
         String randomStr = "kjrhgnvq";
 
         // get element
-        assertEquals(hash1[1], d.getHash(hash1[0]));
+        assertEquals(SHA3_512_VALUE, d.getHash(WORD, SHA3_512));
 
         // element doesn't exist
         try {
-            d.getHash(randomStr);
+            d.getHash(randomStr, SHA1);
             fail();
         } catch (NullPointerException e) {
             assertEquals(String.format("Element (%s) doesn't exist in the dictionary.", randomStr), e.getMessage());
         }
+
+        // element exists but not the algorithm
         try {
-            d.getHash(null);
+            d.getHash(WORD, SHA1);
             fail();
         } catch (NullPointerException e) {
-            assertEquals(String.format("Element (%s) doesn't exist in the dictionary.", null), e.getMessage());
+            assertEquals(String.format("Element (%s) doesn't have an equivalent hash for the algorithm (%s)", WORD, SHA1), e.getMessage());
+        }
+
+        // null passed as an argument
+        try {
+            d.getHash("stringTest1", null);
+            fail();
+        } catch (NullPointerException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
+        try {
+            d.getHash(null, "stringTest2");
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
+        }
+        try {
+            d.getHash(null, null);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertEquals("null value passed in argument.", e.getMessage());
         }
     }
-     */
 
 }
