@@ -76,6 +76,10 @@ public class HashDictionary {
      */
     public String getWord(String hashValue) {
 
+        if (hashValue == null) {
+            throw new IllegalArgumentException("null value passed in argument.");
+        }
+
         for (String word: this.hashmap.keySet()) {
             if (this.hashmap.get(word).containsValue(hashValue)) {
                 return word;
