@@ -36,6 +36,10 @@ public class HashDictionary {
 
     public HashMap<String, String> getAllHashes(String word) {
 
+        if (word == null) {
+            throw new IllegalArgumentException("null value passed in argument.");
+        }
+
         return this.hashmap.get(word);
     }
 
